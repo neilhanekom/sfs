@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sfs</title>
+  <%= include_gon %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+</head>
+<body>
+
+
+<%= content_tag "div", id: "wrapper", data: {user_present: user_signed_in? } do %>
+	<%= render 'shared/nav' if user_signed_in? %>
+
+	<div id="page-wrapper" >
+		<%= yield %>
+	</div>
+
+<% end %>
+
+</body>
+</html>

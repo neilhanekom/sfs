@@ -1,0 +1,13 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "bootstrap-sass-official": "latest",
+    "metisMenu": "latest",
+    "angular": "~> 1.5",
+    "angular-morris-chart": "latest",
+    "morrisjs": "latest"
+  },
+  "resolutions": {
+    "angular": "1.5"
+  }
+}
