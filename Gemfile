@@ -31,6 +31,10 @@ gem 'font-awesome-sass'
 
 gem 'gon'
 
+gem 'faker'
+
+
+gem 'listen', '~> 2.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

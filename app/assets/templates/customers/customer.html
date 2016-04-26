@@ -1,0 +1,10 @@
+<article class="customer-details">
+<h1>Customer {{customer.id}}</h1>
+<h2>{{customer.f_name}} {{customer.l_name}}</h2>
+
+
+<h5>
+<small class="text-uppercase">Joined</small>
+{{customer.created_at | date}}
+</h5>
+</article>

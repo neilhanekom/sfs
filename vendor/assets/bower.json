@@ -5,7 +5,8 @@
     "metisMenu": "latest",
     "angular": "~> 1.5",
     "angular-morris-chart": "latest",
-    "morrisjs": "latest"
+    "morrisjs": "latest",
+    "angular-route": "latest"
   },
   "resolutions": {
     "angular": "1.5"

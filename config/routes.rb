@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'dashboard#show'
+  
+  root to: 'application#redirect_to_dashboard'
   
 
   # Example of regular route:
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+
+  get 'dashboard', to: 'dashboard#show'
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
+ resources :customers, only: [ :index, :show ] 
 
   # Example resource route with more complex sub-resources:
   #   resources :products do

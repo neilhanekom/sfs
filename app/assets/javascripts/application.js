@@ -15,12 +15,15 @@
 //= require jquery_ujs
 //= require sidebar_menu.js
 //= require angular
+//= require angular-route
+
 //= gon
 //= require mocha
 //= require eve
 //= require metisMenu
-//= require turbolinks
+
 //= require raphael
 //= require morrisjs
 //= require angular-morris-chart
 //= require_tree .
+//= require ./templates
