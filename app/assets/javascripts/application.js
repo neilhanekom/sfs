@@ -16,7 +16,7 @@
 //= require sidebar_menu.js
 //= require angular
 //= require angular-route
-
+//= require angularjs/rails/resource
 //= gon
 //= require mocha
 //= require eve

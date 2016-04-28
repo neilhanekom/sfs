@@ -33,6 +33,9 @@ gem 'gon'
 
 gem 'faker'
 
+gem 'angularjs-rails-resource'
+
+gem 'rack-cors', :require => 'rack/cors'
 
 gem 'listen', '~> 2.7'
 # Use ActiveModel has_secure_password

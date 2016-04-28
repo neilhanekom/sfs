@@ -1,0 +1,28 @@
+<section>
+	<h1>New Customer</h1>
+	<form >
+	  <div class="form-group">
+	    <label for="f_name">First Name</label>
+	    <input type="text" ng-model="customer.f_name" class="form-control" id="customer.f_name" placeholder="First Name">
+	  </div>
+	  <div class="form-group">
+	    <label for="l_name">Last Name</label>
+	    <input type="text" class="form-control" ng-model="customer.l_name" id="l_name" placeholder="Last Name">
+	  </div>
+	  <div class="form-group">
+	    <label for="IdNo">RSA ID</label>
+	    <input type="text" class="form-control" ng-model="customer.rsaid" id="Idno" placeholder="Last Name">
+	  </div>
+	  <div class="form-group">
+	    <label for="phone">Contact Phone</label>
+	    <input type="text" class="form-control" ng-model="customer.phone" id="Idno" placeholder="eg: 082 092 1188">
+	  </div>
+	  <div class="form-group">
+	    <label for="neigbour">Next Door Neigbour</label>
+	    <input type="text" class="form-control" ng-model="customer.neigbour" id="neigbour" placeholder="Neigbour's name and surname">
+	  </div>
+	  
+	  <button ng-click="create(customer)" class="btn btn-default">Submit</button>
+	</form>
+</section>
+

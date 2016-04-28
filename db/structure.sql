@@ -29,6 +29,17 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+--
+-- Name: payment_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE payment_status AS ENUM (
+    'outstanding',
+    'complete',
+    'late'
+);
+
+
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -107,6 +118,84 @@ ALTER SEQUENCE customers_id_seq OWNED BY customers.id;
 
 
 --
+-- Name: loans; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE loans (
+    id integer NOT NULL,
+    loan_date date NOT NULL,
+    agreement_no character varying NOT NULL,
+    salesrep_id integer NOT NULL,
+    customer_id integer NOT NULL,
+    loan_amount numeric(8,2),
+    admin_fee character varying,
+    total_amount character varying,
+    balance numeric(8,2),
+    installments integer NOT NULL,
+    final_payment_date date NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: loans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE loans_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: loans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE loans_id_seq OWNED BY loans.id;
+
+
+--
+-- Name: payments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE payments (
+    id integer NOT NULL,
+    customer_id integer NOT NULL,
+    loan_id integer NOT NULL,
+    receipt_no character varying NOT NULL,
+    date_paid date NOT NULL,
+    date_due date NOT NULL,
+    amount_due numeric(8,2),
+    amount_paid numeric(8,2),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    payment_status payment_status
+);
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE payments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: payments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -176,6 +265,20 @@ ALTER TABLE ONLY customers ALTER COLUMN id SET DEFAULT nextval('customers_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY loans ALTER COLUMN id SET DEFAULT nextval('loans_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -193,6 +296,22 @@ ALTER TABLE ONLY addresses
 
 ALTER TABLE ONLY customers
     ADD CONSTRAINT customers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: loans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY loans
+    ADD CONSTRAINT loans_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: payments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payments
+    ADD CONSTRAINT payments_pkey PRIMARY KEY (id);
 
 
 --
@@ -264,4 +383,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160425172356');
 INSERT INTO schema_migrations (version) VALUES ('20160425175317');
 
 INSERT INTO schema_migrations (version) VALUES ('20160425195208');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427063619');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427063645');
+
+INSERT INTO schema_migrations (version) VALUES ('20160427094104');
 

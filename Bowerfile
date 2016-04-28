@@ -15,3 +15,5 @@ asset 'angular-morris-chart'
 asset 'morrisjs'
 
 asset 'angular-route'
+
+asset 'angular-resource'

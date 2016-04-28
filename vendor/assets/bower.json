@@ -6,7 +6,8 @@
     "angular": "~> 1.5",
     "angular-morris-chart": "latest",
     "morrisjs": "latest",
-    "angular-route": "latest"
+    "angular-route": "latest",
+    "angular-resource": "latest"
   },
   "resolutions": {
     "angular": "1.5"

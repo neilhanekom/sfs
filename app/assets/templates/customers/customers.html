@@ -1,39 +1,54 @@
-<div >
-		<h1>Customers</h1>
-		<h4>Search Customer</h4>
-	<section class="search-form">
-		<form>
-		<label for="search.keywords" class="sr-only">Keywords</label>
-		<input type="text"
-			name="keywords"
-			class="form-control input-lg"
-			placeholder="First Name, Last Name, or Email Address"
-			ng-change="search(keywords)"
-			ng-model="keywords">
-		</form>
-	</section>
+<section>
+	
+	<h1>Customers</h1>
+	<div class="row">
+		<div class="col-md-10">
+			<h4>Search Customer</h4>
+			<section class="search-form">
+				<form>
+				<label for="search.keywords" class="sr-only">Keywords</label>
+				<input type="text"
+					name="keywords"
+					class="form-control input-lg"
+					placeholder="First Name, Last Name, or Email Address"
+					ng-change="search(keywords)"
+					ng-model="keywords">
+				</form>
+			</section>
 
-	<h4>Search Results</h4>
+			<h4>Search Results</h4>
 
-	<ul class="list-group">
-	  <li class="list-group-item" ng-repeat="customer in customers">
-		   <div class="row">
-		   		<div class="col-md-6">
-		   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
-		   			<small>{{customer.rsaid}}</small>
-		   		</div>
-		   		<div class="col-md-6">
-		   			<div class="pull-right">
-		   				<h5 >
-			   				{{customer.created_at | date:'dd MMM yyyy'}}
-			   			</h5>
-			   			<button class="btn btn-primary" ng-click="viewDetails(customer)">
-			   				View Details
-			   			</button>
-		   			</div>
-		   			
-		   			
-		   		</div>
-		   </div>
-	  </li>
-</ul>
+			<ul class="list-group">
+				  <li class="list-group-item" ng-repeat="customer in customers">
+					   <div class="row">
+					   		<div class="col-md-6">
+					   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+					   			<small>{{customer.rsaid}}</small>
+					   		</div>
+					   		<div class="col-md-6">
+					   			<div class="pull-right">
+					   				<h5 >
+						   				{{customer.created_at | date:'dd MMM yyyy'}}
+						   			</h5>
+						   			<button class="btn btn-primary" ng-click="viewDetails(customer)">
+						   				View Details
+						   			</button>
+					   			</div>
+					   			
+					   			
+					   		</div>
+					   </div>
+				  </li>
+			</ul>
+		</div>
+		<div class="col-md-2">
+			<ul class="nav nav-pills nav-stacked">
+			  <li role="presentation" class="active"><a href="#">Home</a></li>
+			  <li role="presentation"><a href="#new">New</a></li>
+			  <li role="presentation"><a href="#">Messages</a></li>
+			</ul>
+		</div>
+	</div>
+	
+</section>
+	
