@@ -22,11 +22,10 @@ class CustomersController < ApplicationController
 	end	
 
 	def show
-		customer = Customer.find(params[:id])
+		customer = Customer.find(params[:id]) 
 		respond_to do |format|
-		format.json { render json: customer }
+			format.json { render json: customer } end
 		end
-	end
 
 	def new
 		# respond_to do |format|
@@ -36,32 +35,35 @@ class CustomersController < ApplicationController
 	end
 
 	def create
-		def customer_params
-		  params.permit(:f_name, :l_name, :rsaid, :phone, :neigbour)
-		end
-		
 		@customer = Customer.new(customer_params)
-	    if @customer.save
-	      respond_to do |format|
-		format.json { render json: customer }
-		end
+	    if @customer.save	
+	    	respond_to do |format|
+				format.json { render json: @customer }
+			end 
 	    else
 	      # This line overrides the default rendering behavior, which
 	      # would have been to render the "create" view.
-	      render "new"
+	      respond_to do |format|
+				format.json { render json: @customer.errors.full_messages }
+			end 
 	    end
-
-	   	
-
-	    # new_ = params[:new_post][:title][0...250] # Get only first 250 characters
-	    # new_post.contents = params[:new_post][:contents]
-
-	    # # Confirm post is valid and save or return HTTP error
-	    # if new_post.valid?
-	    #   new_post.save!
-	    # else
-	    #   render "public/422", :status => 422
-	    #   return
-	    # end
 	end	
+
+	def update
+	    @customer = Customer.find(params[:id])
+	    if @customer.update_attributes(customer_params)
+	      # Handle a successful update.
+	      respond_to do |format|
+				format.json { render json: @customer }
+		end 
+	    else
+	      	
+	    end
+	 end
+
+	private
+
+	def customer_params
+	  params.require(:customer).permit(:f_name, :l_name, :rsaid, :phone, :neigbour)
+	end
 end	

@@ -49,14 +49,48 @@ Customers.controller('CustomersController', ['$scope', '$http', '$location',
 	}
 ]);
 
-Customers.controller('CustomerController', ['$scope', '$http', '$location', '$routeParams', '$resource',
-	function($scope, $http, $location, $routeParams, $resource) {
+Customers.controller('CustomerController', ['$scope', '$http', '$location', '$routeParams', 'Customer',
+	function($scope, $http, $location, $routeParams, Customer) {
 		
 
 			var customerId = $routeParams.id;
-			var Customer = $resource('/customers/:customerId.json')
+			// Customer.get(customerId).then(function (customer) {
+		 //        $scope.customer = customer;
+		 //    });
 
-			$scope.customer = Customer.get({ "customerId": customerId});
+			$http.get(
+			"/customers/" + customerId + ".json"
+			).then(function(response) { $scope.customer = response.data;
+			},function(response) {
+			alert("There was a problem: " + response.status);
+			} );
+
+			$scope.view_edit = false;
+			$scope.toggleViewEdit = function() {
+				$scope.view_edit = !$scope.view_edit;
+				console.log($scope.view_edit);
+			};
+
+			$scope.update = function(customer) {
+			console.log("updating");
+			var update_cust = new Customer({
+				id: customer.id,
+				f_name: customer.f_name,
+				l_name: customer.l_name,
+				rsaid: customer.rsaid,
+				phone: customer.phone,
+				neigbour: customer.neigbour
+			});
+
+			update_cust.update().then(function(response){
+				console.log(response);
+				$scope.view_edit = false;
+			}, function(erro) {
+				console.log(error);
+			});
+		};
+
+			
 		
 	}
 ]);
@@ -76,7 +110,10 @@ Customers.controller('newCustomerController', ['$scope', '$http', '$location', '
 			});
 
 			new_cust.create();
+			
 		};
+
+
 			
 	
 		}

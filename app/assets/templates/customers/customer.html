@@ -1,10 +1,53 @@
 <article class="customer-details">
-<h1>Customer {{customer.id}}</h1>
-<h2>{{customer.f_name}} {{customer.l_name}}</h2>
+	<div class="row">
+		<div class="col-md-10" >
+			<div ng-if="!view_edit">
+				<h2>{{customer.f_name}} {{customer.l_name}}</h2>
+				<h3><span>ID No: </span>{{customer.rsaid}}</h3>
+				<h3><span>Phone No#</span>{{customer.phone}}</h3>
+				<h3><span>Neighbour: </span>{{customer.neigbour}}</h3>
+				<h5>
+				<small class="text-uppercase">Joined</small>
+				{{customer.created_at | date}}
+				</h5>
+			</div>
+			<div ng-if="view_edit">
+				<form >
+					  <div class="form-group">
+					    <label for="f_name">First Name</label>
+					    <input type="text" ng-model="customer.f_name" class="form-control" id="customer.f_name" placeholder="First Name">
+					  </div>
+					  <div class="form-group">
+					    <label for="l_name">Last Name</label>
+					    <input type="text" class="form-control" ng-model="customer.l_name" id="l_name" placeholder="Last Name">
+					  </div>
+					  <div class="form-group">
+					    <label for="IdNo">RSA ID</label>
+					    <input type="text" class="form-control" ng-model="customer.rsaid" id="Idno" placeholder="Last Name">
+					  </div>
+					  <div class="form-group">
+					    <label for="phone">Contact Phone</label>
+					    <input type="text" class="form-control" ng-model="customer.phone" id="Idno" placeholder="eg: 082 092 1188">
+					  </div>
+					  <div class="form-group">
+					    <label for="neigbour">Next Door Neigbour</label>
+					    <input type="text" class="form-control" ng-model="customer.neigbour" id="neigbour" placeholder="Neigbour's name and surname">
+					  </div>
+					  
+					  <button ng-click="update(customer)" class="btn btn-default">Update</button>
+					</form>
+				
+			</div>
+			
+		</div>
+		
+		<div class="col-md-2">
+			<ul class="nav nav-pills nav-stacked">
+			  <li role="presentation" class="active"><a ng-click="toggleViewEdit()">Edit</a></li>
+			  <li role="presentation"><a href="#">Loans</a></li>
+			  <li role="presentation"><a href="#">Payments</a></li>
+			</ul>
+		</div>
+	</div>
 
-
-<h5>
-<small class="text-uppercase">Joined</small>
-{{customer.created_at | date}}
-</h5>
 </article>
