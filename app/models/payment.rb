@@ -4,4 +4,7 @@ class Payment < ActiveRecord::Base
 	    complete:       'complete',
 	    late:           'late'
 	  }
+
+	belongs_to :customer
+	belongs_to :loan  
 end

@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   #   end
  resources :customers, only: [ :index, :show, :new, :create, :update ] 
 
- resources :loans, only: [ :index, :show, :new, :create, :update ] 
+ resources :loans, only: [ :index, :show, :new, :create, :update ]
 
   # Example resource route with more complex sub-resources:
   #   resources :products do

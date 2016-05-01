@@ -196,6 +196,36 @@ ALTER SEQUENCE payments_id_seq OWNED BY payments.id;
 
 
 --
+-- Name: salesreps; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE salesreps (
+    id integer NOT NULL,
+    f_name character varying NOT NULL,
+    l_name character varying NOT NULL
+);
+
+
+--
+-- Name: salesreps_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE salesreps_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: salesreps_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE salesreps_id_seq OWNED BY salesreps.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -279,6 +309,13 @@ ALTER TABLE ONLY payments ALTER COLUMN id SET DEFAULT nextval('payments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY salesreps ALTER COLUMN id SET DEFAULT nextval('salesreps_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -312,6 +349,14 @@ ALTER TABLE ONLY loans
 
 ALTER TABLE ONLY payments
     ADD CONSTRAINT payments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: salesreps_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY salesreps
+    ADD CONSTRAINT salesreps_pkey PRIMARY KEY (id);
 
 
 --
@@ -365,6 +410,14 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: fk_rails_ba3831bab8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY loans
+    ADD CONSTRAINT fk_rails_ba3831bab8 FOREIGN KEY (customer_id) REFERENCES customers(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -387,4 +440,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160427063619');
 INSERT INTO schema_migrations (version) VALUES ('20160427063645');
 
 INSERT INTO schema_migrations (version) VALUES ('20160427094104');
+
+INSERT INTO schema_migrations (version) VALUES ('20160428194202');
+
+INSERT INTO schema_migrations (version) VALUES ('20160429091039');
 

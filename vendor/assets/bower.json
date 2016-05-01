@@ -7,7 +7,9 @@
     "angular-morris-chart": "latest",
     "morrisjs": "latest",
     "angular-route": "latest",
-    "angular-resource": "latest"
+    "angular-resource": "latest",
+    "momentjs": "latest",
+    "angular-bootstrap": "latest"
   },
   "resolutions": {
     "angular": "1.5"

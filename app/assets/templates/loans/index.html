@@ -1,5 +1,123 @@
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a href="#">Loans</a></li>
-  <li role="presentation"><a href="#new">New</a></li>
-  
-</ul>
+
+<div class="row">
+	<div class="col-md-6">
+		<h3>Loans dashboard</h3>
+	</div>
+	<div class="col-md-6">
+		<ul class="nav nav-pills pull-right">
+		  <li role="presentation"><a href="#new">New</a></li> 
+		</ul>
+	</div>
+</div>
+<!-- <div class="row">
+	<div class="col-md-6">
+		<label class="radio-inline">
+		  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> By Customer
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> By Date
+		</label>
+		<label class="radio-inline">
+		  <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> By Agreement#
+		</label>
+	</div>
+</div> -->
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="form-group">
+			    <label for="exampleInputEmail1">By Customer</label>
+			    <label for="search.keywords" class="sr-only">Keywords</label>
+				<input type="text"
+					name="keywords"
+					class="form-control"
+					placeholder="First Name, Last Name, or Email Address"
+					ng-change="searchCustomer(keywords)"
+					ng-model="keywords">
+	  		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="form-group">
+		    <label for="loan_date">By Date</label>
+		    <input type="date" ng-change="formatDate(loan_date); finalpaydate(loan_date, loan.installments);" ng-model="loan_date" class="form-control" id="loan_date" placeholder="loan_date">
+		  </div>
+	</div>
+	<div class="col-md-4">
+		<div class="form-group">
+			    <label for="exampleInputEmail1">By Agreement</label>
+			    <label for="search.keywords" class="sr-only">Keywords</label>
+				<input type="text"
+					name="keywords"
+					class="form-control"
+					placeholder="Agreement#"
+					ng-change="searchCustomer(keywords)"
+					ng-model="keywords">
+	  		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<ul class="list-group">
+				  <li class="list-group-item" >
+					   <div class="row">
+					   		<div class="col-md-6">
+					   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+					   			<small>{{customer.rsaid}}</small>
+					   		</div>
+					   		<div class="col-md-6">
+					   			<div class="pull-right">
+					   				<h5 >
+						   				{{customer.created_at | date:'dd MMM yyyy'}}
+						   			</h5>
+						   			<button class="btn btn-primary" ng-click="viewDetails(customer)">
+						   				View Details
+						   			</button>
+					   			</div>
+					   			
+					   			
+					   		</div>
+					   </div>
+				  </li>
+				  <li class="list-group-item" >
+					   <div class="row">
+					   		<div class="col-md-6">
+					   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+					   			<small>{{customer.rsaid}}</small>
+					   		</div>
+					   		<div class="col-md-6">
+					   			<div class="pull-right">
+					   				<h5 >
+						   				{{customer.created_at | date:'dd MMM yyyy'}}
+						   			</h5>
+						   			<button class="btn btn-primary" ng-click="viewDetails(customer)">
+						   				View Details
+						   			</button>
+					   			</div>
+					   			
+					   			
+					   		</div>
+					   </div>
+				  </li>
+				  <li class="list-group-item" >
+					   <div class="row">
+					   		<div class="col-md-6">
+					   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+					   			<small>{{customer.rsaid}}</small>
+					   		</div>
+					   		<div class="col-md-6">
+					   			<div class="pull-right">
+					   				<h5 >
+						   				{{customer.created_at | date:'dd MMM yyyy'}}
+						   			</h5>
+						   			<button class="btn btn-primary" ng-click="viewDetails(customer)">
+						   				View Details
+						   			</button>
+					   			</div>
+					   			
+					   			
+					   		</div>
+					   </div>
+				  </li>
+			</ul>
+	</div>
+</div>

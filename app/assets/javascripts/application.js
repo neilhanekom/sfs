@@ -21,7 +21,8 @@
 //= require mocha
 //= require eve
 //= require metisMenu
-
+//= require momentjs
+//= require angular-bootstrap
 //= require raphael
 //= require morrisjs
 //= require angular-morris-chart

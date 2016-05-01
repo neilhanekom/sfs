@@ -1,39 +1,107 @@
-
-<ul class="nav nav-pills">
-  <li role="presentation" ><a href="#">Loans</a></li>
-  <li role="presentation" class="active"><a href="#new">New</a></li>
-  
-</ul>
-<h2>New Loan</h2>
+<div class="row">
+	<div class="col-md-6">
+		<h2>New Loan</h2>
+	</div>
+	<div class="col-md-6" >
+		<ul class="nav nav-pills pull-right">
+		  <li role="presentation" ><a href="#loans">Loans</a></li>
+		  
+		</ul>
+	</div>
+</div>
 <form>
-	<div class="form-group">
-	    <label for="exampleInputEmail1">Customer</label>
-	    <select class="form-control">
-		  <option>1</option>
-		  <option>2</option>
-		  <option>3</option>
-		  <option>4</option>
-		  <option>5</option>
-		</select>
-	  </div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="form-group">
+			    <label for="exampleInputEmail1">Customer</label>
+			    <label for="search.keywords" class="sr-only">Keywords</label>
+				<input type="text"
+					name="keywords"
+					class="form-control"
+					placeholder="First Name, Last Name, or Email Address"
+					ng-change="searchCustomer(keywords)"
+					ng-model="keywords">
+	  		</div>
+	  		<div >
+	  			<ul class="list-group">
+					  <li class="list-group-item" ng-repeat="customer in customers">
+						   <div class="row">
+						   		<div class="col-md-6">
+						   			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+						   			<small>{{customer.rsaid}}</small>
+						   		</div>
+						   		<div class="col-md-6">
+						   			<div class="pull-right">
+						   				<h5 >
+							   				{{customer.created_at | date:'dd MMM yyyy'}}
+							   			</h5>
+							   			<button class="btn btn-danger" ng-click="AddCustomer(customer)">
+							   				Add
+							   			</button>
+						   			</div>
+						   			
+						   			
+						   		</div>
+						   </div>
+					  </li>
+				</ul>
+	  		</div>
+	  		<div class="row" ng-if="loan.customer">
+	  		<div class="col-md-4">
+	  			<a href="#" class="thumbnail">
+			      <img ng-src="http://lorempixel.com/200/200/people" alt="...">
+
+			    </a>
+	  		</div>
+	  		<div class="col-md-8" >
+	  			<h4>{{customer.f_name + ' ' + customer.l_name}}</h4>
+	  			<h5>Id: {{customer.rsaid}}</h5>
+	  			<h5>Contact: {{customer.phone}}</h5>
+	  			<h6>Neigbour: {{customer.neigbour}}</h6>
+	  		</div>
+	  		
+	  			
+	  		</div>
+	  		
+		</div>
+		<div class="col-md-6">
+			<div class="form-group">
+    <label for="exampleInputEmail1">Agreement#</label>
+    <input type="text" ng-model="loan.agreement_no" class="form-control" id="agreement_no" placeholder="Agreement No">
+  </div>
+
+    <div class="form-group">
+	    <label for="exampleInputEmail1">Sales rep</label>
+			    <select class="form-control" ng-model="salesrep" ng-change="addRep(salesrep)">
+				  <option ng-repeat="rep in salesreps" value="{{rep.id}}">{{rep.f_name}}</option>
+				  
+				</select>
+			  </div>
+		  
+		  <div class="form-group">
+		    <label for="loan_amount">Loan Amount</label>
+		    <input type="number" ng-change="calcLoan(loan.loan_amount)" ng-model="loan.loan_amount" class="form-control" id="loan_amount" placeholder="Loan Amount">
+		  </div>
+		  <div class="form-group">
+		    <label for="admin_fee">Admin fee</label>
+		    <input type="number" ng-model="loan.admin_fee" class="form-control" id="admin_fee" placeholder="Admin_fee">
+		  </div>
+		  <div class="form-group">
+		    <label for="total_amount">Total Amount</label>
+		    <input type="number" ng-model="loan.total_amount" class="form-control" id="total_amount" placeholder="Total Amount">
+		  </div>
+		  <div class="form-group">
+		    <label for="installments">Installments</label>
+		    <input type="number" ng-model="loan.installments" ng-change="finalpaydate(loan.loan_date, loan.installments);" class="form-control" id="installments" placeholder="No of Monthly installments">
+		  </div>
+		  <div class="form-group">
+		    <label for="loan_date">Date</label>
+		    <input type="date" ng-change="formatDate(loan_date); finalpaydate(loan_date, loan.installments);" ng-model="loan_date" class="form-control" id="loan_date" placeholder="loan_date">
+		  </div>
+		</div>
+	</div>
 	
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputFile">File input</label>
-    <input type="file" id="exampleInputFile">
-    <p class="help-block">Example block-level help text here.</p>
-  </div>
-  <div class="checkbox">
-    <label>
-      <input type="checkbox"> Check me out
-    </label>
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+	
+  
+  <button ng-click="create(loan)" class="btn btn-default">Submit</button>
 </form>
